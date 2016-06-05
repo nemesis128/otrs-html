@@ -23,14 +23,30 @@
 [% RenderBlockStart("DebugRTLButton") %]
         <button onclick="Core.Debug.SimulateRTLPage();" type="button">Simulate RTL</button>
 [% RenderBlockEnd("DebugRTLButton") %]
-        <ul class="Individual">
-            [% RenderBlockStart("Preferences") %]
-                    <li class="[% Data.Class | html %]"><a href="[% Env("Baselink") %]Action=CustomerPreferences" title="[% Translate("Edit personal preferences") | html %]">[% Translate("Preferences") | html %]</a></li>
-            [% RenderBlockEnd("Preferences") %]
-            [% RenderBlockStart("Logout") %]
-                    <li class="Last"><a id="LogoutButton" href="[% Env("Baselink") %]Action=Logout">[% Translate("Logout %s %s", Env("UserFirstname"), Env("UserLastname")) | html %]</a></li>
-            [% RenderBlockEnd("Logout") %]
-                </ul>
+        <div id="Navigation">
+            <ul>
+        [% RenderBlockStart("Item") %]
+                <li class="[% Data.Class | html %]">
+                    <a href="[% Env("Baselink") %][% Data.Link %]" accesskey="[% Data.AccessKey | html %]" title="[% Translate(Data.Description || Data.Name) | html %] ([% Data.AccessKey | html %])" [% Data.LinkOption %]>[% Translate(Data.Name) | html %]</a>
+        [% RenderBlockStart("ItemAreaSub") %]
+                    <ul>
+        [% RenderBlockStart("ItemAreaSubItem") %]
+                        <li><a class="[% Data.Class | html %]" href="[% Env("Baselink") %][% Data.Link %]" accesskey="[% Data.AccessKey | html %]" title="[% Translate(Data.Description || Data.Name) | html %] ([% Data.AccessKey | html %])"  [% Data.LinkOption %]>[% Translate(Data.Name) | html %]</a></li>
+        [% RenderBlockEnd("ItemAreaSubItem") %]
+                    </ul>
+        [% RenderBlockEnd("ItemAreaSub") %]
+                </li>
+        [% RenderBlockEnd("Item") %]
+            </ul>
+            <ul class="Individual">
+        [% RenderBlockStart("Preferences") %]
+                <li class="[% Data.Class | html %]"><a href="[% Env("Baselink") %]Action=CustomerPreferences" title="[% Translate("Edit personal preferences") | html %]">[% Translate("Preferences") | html %]</a></li>
+        [% RenderBlockEnd("Preferences") %]
+        [% RenderBlockStart("Logout") %]
+                <li class="Last"><a id="LogoutButton" href="[% Env("Baselink") %]Action=Logout">[% Translate("Logout %s %s", Env("UserFirstname"), Env("UserLastname")) | html %]</a></li>
+        [% RenderBlockEnd("Logout") %]
+            </ul>
+        </div>
     </div>
 <!-- end CI layout -->
 <!-- end header -->
